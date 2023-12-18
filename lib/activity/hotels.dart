@@ -1,7 +1,7 @@
-import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/colors/primarycolors.dart';
 
 import '../components/btndecor.dart';
 import '../components/edittextstyle.dart';
@@ -42,15 +42,15 @@ class _hotelsState extends State<hotels> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              edittextstyle(hintText: "Check In", Controller: checkinController, iconName: Icons.calendar_month_outlined,),
-              edittextstyle(hintText: "Check out", Controller: checkoutController, iconName: Icons.calendar_month_outlined,),
-              edittextstyle(hintText: "Room & Guest", Controller: roomController, iconName: Icons.person,),
+              edittextstyle(hintText: "Check In", Controller: checkinController,),
+              edittextstyle(hintText: "Check out", Controller: checkoutController,),
+              edittextstyle(hintText: "Room & Guest", Controller: roomController,),
 
               const SizedBox(
                 height: 20,
               ),
               btndecor(text: "Find", ontap: (){},
-                  btncolor: Color(0xff32A2FE),
+                  btncolor: primarycolors.blue,
                   textcolor: Colors.white),
               SizedBox(
                 height: 10,
@@ -187,7 +187,7 @@ class _hotelsState extends State<hotels> {
                         height: 30,
                         width: 70,
                         decoration: BoxDecoration(
-                            color: Color(0xff32A2FE),
+                            color: primarycolors.blue,
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(10)),
                         child: Text(

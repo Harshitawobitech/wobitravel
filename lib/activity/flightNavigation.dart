@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/activity/calender.dart';
 import 'package:untitled/activity/flights.dart';
 import 'package:untitled/activity/hotels.dart';
+import 'package:untitled/colors/primarycolors.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 
 class flightNavigation extends StatefulWidget {
   flightNavigation({super.key});
@@ -37,70 +40,107 @@ class _flightNavigationState extends State<flightNavigation>
                   dividerColor: Colors.transparent,
                   indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
-                    color: Color(0xff32a2fe),
+                    color: primarycolors.blue,
                   ),
-                  tabs: [
+
+                  tabs: const [
                     Tab(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border:
-                            Border.all(color:Color(0xff32a2fe), width: 1)),
-                        child: const Align(
-                            alignment: Alignment.center,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.flight),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text("Flight", style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            )
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.flight),
+                          Text("Flight")
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.flight),
+                          Text("Flight")
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.flight),
+                          Text("Flight")
+                        ],
+                      ),
+                    ),
+                  ]),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: TabBarView(controller: _tabController,
+                    children: [
+                      flights(),
+                      hotels(),
+                      Icon(Icons.flight)
+                      //CalendarAppBar(lastDate: lastDate, onDateChanged: onDateChanged)
+                    ]),
+              )
+            ],
+          ),
+        ),
+      )
+    ));
+  }
+}
+
+/*return SafeArea(
+        child: Scaffold(
+      body: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              TabBar(
+                  labelColor: Colors.white,
+                  controller: _tabController,
+                  unselectedLabelColor: Colors.black,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  dividerColor: Colors.transparent,
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: primarycolors.blue,
+                  ),
+
+                  tabs: const [
+                    Tab(
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.flight),
+                            Text("Flight")
+                          ],
                         ),
                       ),
                     ),
                     Tab(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border:
-                            Border.all(color: Color(0xff32a2fe), width: 1)),
-                        child: const Align(
-                            alignment: Alignment.center,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.location_on),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text("Hotel", style: TextStyle(fontWeight: FontWeight.bold),),
-                              ],
-                            )
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.flight),
+                            Text("Flight")
+                          ],
                         ),
                       ),
                     ),
                     Tab(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            border:
-                            Border.all(color: Color(0xff32a2fe), width: 1)),
-                        child: const Align(
-                            alignment: Alignment.center,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.flight),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text("Flight & Hotel", style: TextStyle(fontWeight: FontWeight.bold),),
-                              ],
-                            )
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.flight),
+                            Text("Flight")
+                          ],
                         ),
                       ),
                     ),
@@ -113,13 +153,12 @@ class _flightNavigationState extends State<flightNavigation>
                     children: [
                       flights(),
                       hotels(),
-                      Icon(Icons.flight),
+                      Icon(Icons.flight)
+                      //CalendarAppBar(lastDate: lastDate, onDateChanged: onDateChanged)
                     ]),
               )
             ],
           ),
         ),
       )
-    ));
-  }
-}
+    ));*/

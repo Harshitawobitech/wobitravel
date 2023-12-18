@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
-import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'package:untitled/activity/flightNavigation.dart';
+import 'package:untitled/colors/primarycolors.dart';
 
 class MotionTabBarDemo extends StatelessWidget {
   const MotionTabBarDemo({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _MyMotionTabBarDemo extends State<MyMotionTabBarDemo>
   void initState() {
     super.initState();
     _motionTabBarController = MotionTabBarController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 4,
       vsync: this,
     );
@@ -50,7 +50,7 @@ class _MyMotionTabBarDemo extends State<MyMotionTabBarDemo>
     return Scaffold(
       appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: Color(0xff32a2fe),
+          backgroundColor: primarycolors.blue,
           elevation: 50.0,
           actions: <Widget>[
             IconButton(
@@ -160,23 +160,17 @@ class _MyMotionTabBarDemo extends State<MyMotionTabBarDemo>
           Icons.notifications_none_outlined,
           Icons.person_2_outlined
         ],
-        badges: const [
-          MotionBadgeWidget(),
-          MotionBadgeWidget(),
-          null,
-          MotionBadgeWidget(),
-        ],
         textStyle: const TextStyle(
-          fontSize: 12,
-          color: Colors.black,
-          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
         ),
         tabIconColor: Color(0xFFAFAFAF),
         tabIconSize: 28.0,
         tabIconSelectedSize: 26.0,
-        tabSelectedColor: Color(0xff32A2FE),
+        tabSelectedColor: primarycolors.blue,
         tabIconSelectedColor: Colors.white,
-        tabBarColor: Colors.white,
+        tabBarColor: primarycolors.blue,
         onTabItemSelected: (int value) {
           setState(() {
             _motionTabBarController!.index = value;
@@ -189,9 +183,9 @@ class _MyMotionTabBarDemo extends State<MyMotionTabBarDemo>
         controller: _motionTabBarController,
         children: <Widget>[
           flightNavigation(),
-          Icon(Icons.airplane_ticket),
-          Icon(Icons.notifications),
-          Icon(Icons.person),
+          Text("Ticket"),
+          Text("notification"),
+          Text("Profile")
         ],
       ),
       //Drawer

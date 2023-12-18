@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/activity/dashboard.dart';
+import 'package:untitled/activity/calender.dart';
+import 'package:untitled/activity/flightNavigation.dart';
+import 'package:untitled/activity/signUp.dart';
+import 'package:untitled/activity/login.dart';
 import 'package:untitled/activity/splashscreen.dart';
+import 'package:untitled/activity/traveller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'bottombar.dart';
 
@@ -15,9 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+     theme: ThemeData(
+       fontFamily: GoogleFonts.notoSans().fontFamily,
+     ),
+     // home: MyHomePage(),
       home: splashscreen(),
-      //home: MotionTabBarDemo(),
-     // home: dashboard(),
+    //  home: MotionTabBarDemo(),
     );
   }
 }

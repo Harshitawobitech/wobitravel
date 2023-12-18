@@ -18,125 +18,105 @@ class _signUp extends State<signUp> {
     TextEditingController lastnameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
-
     return SafeArea(
       child: Scaffold(
-          body: Container(
-        width: screenWidth,
-        height: screenHeight,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xffD3E8FF), Color(0xffF8F8F8)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight)),
-        child: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 20, 24, 0),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const SizedBox(
-              height: 20,
-            ),
-            textviewstyle(text: "Hi", size: 26,),
-            const SizedBox(
-              height: 10,
-            ),
-            textviewstyle(
-              text: 'Create a new Account', size: 20,
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color(0xffACACAC),
-                          blurRadius: 6,
-                          offset: Offset(0, 6))
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+          body: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.all(16),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const SizedBox(
+                height: 20,
+              ),
+                  Center(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/images/final_logo.png",width: 100, height: 50,fit: BoxFit.cover,),
+                        textviewstyle(text: "Sign up your Account", size: 22, fontweight: FontWeight.bold,),
+                        textviewstyle(text: "Lorum Ipsum", size: 16, ),
+                      ],
+                    ),
+                  ),
+              const SizedBox(
+                height: 30,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  textviewstyle(
+                    text: "Name", size: 12,
+                  ),
+                  edittextstyle(
+                      hintText: "Name", Controller: firstnameController, ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  textviewstyle(
+                    text: 'Email Address', size: 12,
+                  ),
+
+                  edittextstyle(
+                      hintText: "abc@gmail.com",
+                      Controller: emailController,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(
+                    text: 'Mobile', size: 12,
+                  ),
+
+                  edittextstyle(
+                    hintText: "mobile",
+                    Controller: emailController,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(
+                    text: 'Country', size: 12,
+                  ),
+
+                  edittextstyle(
+                    hintText: "Country",
+                    Controller: emailController,),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(
+                    text: 'City', size: 12,
+                  ),
+                  edittextstyle(
+                      hintText: "city", Controller: passwordController,),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: btndecor(text: "Sign Up", ontap: () {}, btncolor: Color(0xff32A2FE),  textcolor: Colors.white,),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyHomePage()));
+                  },
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      textviewstyle(
-                        text: "First Name", size: 12,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      edittextstyle(
-                          hintText: "abc", Controller: firstnameController, iconName: Icons.flight,),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      textviewstyle(
-                        text: 'Last Name', size: 12,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      edittextstyle(
-                          hintText: "xyz", Controller: lastnameController, iconName: Icons.flight,),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      textviewstyle(
-                        text: 'Email Address', size: 12,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      edittextstyle(
-                          hintText: "abc@gmail.com",
-                          Controller: emailController, iconName: Icons.flight,),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      textviewstyle(
-                        text: 'Password', size: 12,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      edittextstyle(
-                          hintText: "abcdef", Controller: passwordController, iconName: Icons.flight,),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: btndecor(text: "Continue", ontap: () {}, btncolor: Color(0xff32A2FE),  textcolor: Colors.white,),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      )
+                      textviewstyle(text: 'Already have an Account ? ', size: 18,),
+                      textviewstyle(text: 'Sign in', size: 18,)
                     ],
-                  ),
-                )),
-            const SizedBox(
-              height: 20,
-            ),
-            TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()));
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    textviewstyle(text: 'Already have an Account ? ', size: 18,),
-                    textviewstyle(text: 'Sign in', size: 18,)
-                  ],
-                ))
-          ]),
-        )),
-      )),
+                  ))
+            ]),
+          ))),
     );
   }
 }

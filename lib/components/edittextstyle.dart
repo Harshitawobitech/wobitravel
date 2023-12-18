@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 class edittextstyle extends StatelessWidget {
   String hintText;
   TextEditingController Controller;
-  IconData iconName;
 
   edittextstyle({
     required this.hintText,
     required this.Controller,
-    required this.iconName,
 });
 
 
@@ -19,7 +17,6 @@ class edittextstyle extends StatelessWidget {
       child: TextField(
           controller: Controller,
           decoration: InputDecoration(
-              icon: new Icon(iconName),
               hintText: hintText,
               filled: true,
               fillColor: Colors.white,
