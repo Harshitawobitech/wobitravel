@@ -42,51 +42,13 @@ class _calenderState extends State<calender> {
             elevation: 50.0,
             actions: <Widget>[
             ]),
-      /*SafeArea(
-      child: MaterialApp(
-        title: 'Scrollable Clean Calendar',
-        theme: ThemeData(
-          colorScheme: const ColorScheme(
-            primary: Color(0xFF3F51B5),
-            primaryContainer: Color(0xFF002984),
-            secondary: Color(0xFFD32F2F),
-            secondaryContainer: Color(0xFF9A0007),
-            surface: Color(0xFFDEE2E6),
-            background: Color(0xFFF8F9FA),
-            error: Color(0xFF96031A),
-            onPrimary: Colors.white,
-            onSecondary: Colors.white,
-            onSurface: Colors.black,
-            onBackground: Colors.black,
-            onError: Colors.white,
-            brightness: Brightness.light,
-          ),
-        ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Scrollable Clean Calendar'),
-            *//*actions: [
-              IconButton(
-                onPressed: () {
-                  calendarController.clearSelectedDates();
-                },
-                icon: const Icon(Icons.clear),
-              )
-            ],*//*
-          ),
-          // floatingActionButton: FloatingActionButton(
-          //   child: const Icon(Icons.arrow_downward),
-          //   onPressed: () {
-          //     calendarController.jumpToMonth(date: DateTime(2022, 8));
-          //   },
-          // ),*/
           body: ScrollableCleanCalendar(
             calendarController: CleanCalendarController(
               minDate: DateTime.now(),
               maxDate: DateTime.now().add(const Duration(days: 365)),
               rangeMode: false,
               onDayTapped: (date) {
-                 Navigator.pop(context, (date.day.toString()+date.month.toString()+date.year.toString()));
+                Navigator.pop(context, (date.day.toString()+date.month.toString()+date.year.toString()));
                 print(date);
               },
               onPreviousMinDateTapped: (date) {},

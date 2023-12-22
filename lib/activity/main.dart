@@ -21,11 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
      theme: ThemeData(
-       fontFamily: GoogleFonts.notoSans().fontFamily,
+       fontFamily: GoogleFonts.poppins().fontFamily,
      ),
-     // home: MyHomePage(),
-      home: splashscreen(),
-    //  home: MotionTabBarDemo(),
+      //home: MyHomePage(),
+     // home: splashscreen(),
+      home: MotionTabBarDemo(),
     );
   }
 }

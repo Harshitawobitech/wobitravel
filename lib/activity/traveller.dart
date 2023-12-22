@@ -86,11 +86,10 @@ class _travellerState extends State<traveller> {
               style: TextStyle(fontSize: 20),
             ),*/
 
-
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                textviewstyle(text: "Adults", size: 16),
+              //  textviewstyle(text: "Adults", size: 16, textColor: Colors.black),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -100,7 +99,7 @@ class _travellerState extends State<traveller> {
                         decrementCount1();
                       },
                     ),
-                    textviewstyle(text: '$itemCount1', size: 16),
+                    textviewstyle(text: '$itemCount1', size: 16, textColor: Colors.black),
                     IconButton(
                       icon: Icon(Icons.add),
                       onPressed: () {
@@ -114,7 +113,7 @@ class _travellerState extends State<traveller> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                textviewstyle(text: "Children", size: 16),
+                textviewstyle(text: "Children", size: 16, textColor: Colors.black),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -124,7 +123,7 @@ class _travellerState extends State<traveller> {
                         decrementCount2();
                       },
                     ),
-                    textviewstyle(text: '$itemCount2', size: 16),
+                    textviewstyle(text: '$itemCount2', size: 16, textColor: Colors.black),
                     IconButton(
                       icon: Icon(Icons.add),
                       onPressed: () {
@@ -134,12 +133,12 @@ class _travellerState extends State<traveller> {
                   ],
                 ),
               ],
-
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                textviewstyle(text: "Infants", size: 16),
+                textviewstyle(text: "Infants", size: 16, textColor: Colors.black),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -149,7 +148,7 @@ class _travellerState extends State<traveller> {
                         decrementCount3();
                       },
                     ),
-                    textviewstyle(text: '$itemCount3', size: 16),
+                    textviewstyle(text: '$itemCount3', size: 16, textColor: Colors.black),
                     IconButton(
                       icon: Icon(Icons.add),
                       onPressed: () {
@@ -159,11 +158,10 @@ class _travellerState extends State<traveller> {
                   ],
                 ),
               ],
-
             ),
             SizedBox(height: 20),
 
-            textviewstyle(text: "Class", size: 20, fontweight: FontWeight.bold,),
+            textviewstyle(text: "Class", size: 20, fontweight: FontWeight.bold, textColor: Colors.black),
             Column(
               children: [
                 ListTile(
@@ -186,6 +184,7 @@ class _travellerState extends State<traveller> {
                       }
                   ),
                 ),
+
                 ListTile(
                   title: Text('Business'),
                   leading: Radio(
@@ -196,7 +195,6 @@ class _travellerState extends State<traveller> {
                       }
                   ),
                 ),
-
               ],
             ),
 

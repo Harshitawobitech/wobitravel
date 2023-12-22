@@ -54,6 +54,7 @@ dev_dependencies:
   motion_tab_bar_v2: ^0.3.0
   scrollable_clean_calendar: ^1.4.1
   google_fonts: ^6.1.0
+  provider: ^6.1.1
 
 
 
@@ -82,6 +83,7 @@ flutter:
     - assets/images/dashboard_bg.png
     - assets/images/logo.jpg
     - assets/images/final_logo.png
+    - assets/images/bg.png
 
  # To add assets to your application, add an assets section, like this:
   # assets:

@@ -4,9 +4,16 @@ import 'package:untitled/activity/calender.dart';
 import 'package:untitled/activity/traveller.dart';
 import 'package:untitled/components/clickableedittext.dart';
 import 'package:untitled/colors/primarycolors.dart';
+import 'package:untitled/components/horizontaldashedline.dart';
+import 'package:untitled/components/verticaldashedline.dart';
+import 'package:untitled/provider/travelupdate.dart';
 import '../components/btndecor.dart';
 import '../components/edittextstyle.dart';
 import '../components/textviewstyle.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
+
+import 'package:provider/provider.dart';
+
 
 class flights extends StatefulWidget {
   const flights({super.key});
@@ -25,8 +32,9 @@ bool TextfieldVisible = false;
 bool ButtonVisibility = true;
 bool _flag = true;
 
-String result = "Traveller & Cabin Class";
-String resultdate = "Select Date";
+String resultPassenger = "Select Passenger";
+String resultDate = "Select Date";
+String resultClass = "Select class";
 
 void toggleTextFieldVisibility() {
   TextfieldVisible = !TextfieldVisible;
@@ -36,25 +44,76 @@ void toggleTextFieldVisibility() {
 var blue = Color(0xff32A2FE);
 var white = Color(0xffF0EFEF);
 var black = Colors.black;
+int itemCount1 = 0;
+int itemCount2 = 0;
+int itemCount3 = 0;
+
+int _selectedValue = 0;
 
 class _flightsState extends State<flights> {
   _navigateAndDisplaySelection(BuildContext context) async {
-    result = await Navigator.push(
+    resultPassenger = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const traveller()),
     );
     setState(() {
-      result;
+      resultPassenger;
+    });
+  }
+
+  int itemCount1 = 0;
+  int itemCount2 = 0;
+  int itemCount3 = 0;
+
+  void incrementCount1() {
+    setState(() {
+      itemCount1++;
+    });
+  }
+
+  void decrementCount1() {
+    setState(() {
+      if (itemCount1 > 0) {
+        itemCount1--;
+      }
+    });
+  }
+
+  void incrementCount2() {
+    setState(() {
+      itemCount2++;
+    });
+  }
+
+  void decrementCount2() {
+    setState(() {
+      if (itemCount2 > 0) {
+        itemCount2--;
+      }
+    });
+  }
+
+  void incrementCount3() {
+    setState(() {
+      itemCount3++;
+    });
+  }
+
+  void decrementCount3() {
+    setState(() {
+      if (itemCount3 > 0) {
+        itemCount3--;
+      }
     });
   }
 
   _navigateAndDisplayDate(BuildContext context) async {
-    resultdate = await Navigator.push(
+    resultDate = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => calender()),
     );
     setState(() {
-      resultdate;
+      resultDate;
     });
   }
 
@@ -67,351 +126,450 @@ class _flightsState extends State<flights> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: ListView(
-      scrollDirection: Axis.vertical,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Radio(
-                      value: 'One way',
-                      groupValue: _groupValue,
-                      onChanged: (value) {
-                        checkRadio(value as String);
-                      }),
-                  Text("One way"),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Radio(
-                      value: 'Round trip',
-                      groupValue: _groupValue,
-                      onChanged: (value) {
-                        checkRadio(value as String);
-                      }),
-                  Text("Round trip"),
-                ],
+    return SafeArea(
+      child: Scaffold(
+          body: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15)
               ),
-              /* Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => setState(() {
-                          _flag = !_flag;
-                          toggleTextFieldVisibility();
-                        }),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _flag ? primarycolors.blue : white,
+              color: Colors.transparent,
+
+            ),
+            child: ListView(
+                  scrollDirection: Axis.vertical,
+                  children: [
+            Padding(
+              padding:  EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /*Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Radio(
+                            value: 'One way',
+                            groupValue: _groupValue,
+                            onChanged: (value) {
+                              checkRadio(value as String);
+                            }),
+                        Text("One way"),
+                        SizedBox(
+                          width: 20,
                         ),
-                        child: Text(
-                          "One way",
-                          style: TextStyle(color: _flag ? Colors.white : black),
+                        Radio(
+                            value: 'Round trip',
+                            groupValue: _groupValue,
+                            onChanged: (value) {
+                              checkRadio(value as String);
+                            }),
+                        Text("Round trip"),
+                      ],
+                    ),
+                  ),*/
+                   Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () => setState(() {
+                                _flag = !_flag;
+                                toggleTextFieldVisibility();
+                              }),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: _flag ? primarycolors.darkblue : Colors.white,
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                  side:  BorderSide(
+                                      width: 1,
+                                      color: primarycolors.lightgrey
+                                  )
+                              ),
+                              child: Text(
+                                "One way",
+                                style: TextStyle(color: _flag ? Colors.white : black),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            ElevatedButton(
+                              onPressed: () => setState(() {
+                                _flag = !_flag;
+                                toggleTextFieldVisibility();
+                              }),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: _flag ? Colors.white : primarycolors.darkblue,
+                                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
+                                  side:  BorderSide(
+                                      width: 1,
+                                      color: primarycolors.lightgrey
+                                  )
+                              ),
+                              child: Text(
+                                "Round trip",
+                                style: TextStyle(
+                                  color: _flag ? black : white,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      ElevatedButton(
-                        onPressed: () => setState(() {
-                          _flag = !_flag;
-                          toggleTextFieldVisibility();
-                        }),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _flag ? white : primarycolors.blue,
+
+                  Container(
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                          Icon(Icons.abc),
+                           // Expanded(child: DashLineView(direction: Axis.vertical,)),
+
+                            Icon(Icons.abc)
+                          ],
                         ),
-                        child: Text(
-                          "Round trip",
-                          style: TextStyle(
-                            color: _flag ? black : white,
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                textviewstyle(text: "From", size: 16, textColor: primarycolors.txtcolor),
+                                edittextstyle(hintText: "Location", Controller: departureController),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                DashLineView(),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                textviewstyle(text: "To", size: 16, textColor: primarycolors.txtcolor),
+                                edittextstyle(hintText: "Location", Controller: departureController),
+                              ],
+                            ),
                           ),
                         ),
+
+                        Row(
+                          children: [
+
+                            Icon(Icons.swap_vert_circle, color: primarycolors.darkblue,),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  /*Row(
+                    children: [
+                      textviewstyle(text: "From", size: 16, textColor: primarycolors.txtcolor),
+                      edittextstyle(
+                        hintText: "From where",
+                        Controller: departureController,
+                      ),
+                      textviewstyle(text: "To", size: 16, textColor: primarycolors.txtcolor),
+                      edittextstyle(
+                        hintText: "Where To",
+                        Controller: returnController,
                       ),
                     ],
                   ),*/
-            ),
-            edittextstyle(
-              hintText: "From where",
-              Controller: departureController,
-            ),
-            edittextstyle(
-              hintText: "Where To",
-              Controller: returnController,
-            ),
-            clickableedittext(
-                hintText: resultdate,
-                Controller: departureController,
-                iconName: Icons.calendar_month,
-                onTap: () {
-                  _navigateAndDisplayDate(context);
-                  //Navigator.push(context, MaterialPageRoute(builder: (context)=> calender()));
-                }),
-            clickableedittext(
-                hintText: result,
-                Controller: travellerController,
-                iconName: Icons.person,
-                onTap: () {
-                  _navigateAndDisplaySelection(context);
-                }),
-            const SizedBox(
-              height: 20,
-            ),
-            btndecor(
-                text: "Search",
-                ontap: () {},
-                btncolor: primarycolors.blue,
-                textcolor: Colors.white),
-            SizedBox(
-              height: 10,
-            ),
-            textviewstyle(text: "Other Services", size: 16),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              height: 90,
-              decoration: BoxDecoration(
-                  color: Color(0xffF0EFEF),
-                  borderRadius: BorderRadius.circular(17)),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.flight,
-                            color: Colors.black,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Book \nFlight",
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.hotel,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            "Flight \n& Hotel",
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.circle_outlined,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            "Running \nStatus",
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        children: [
-                          Icon(
-                            Icons.menu_book,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            "Book \nHotel",
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
-                          )
-                        ],
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            textviewstyle(text: "Explore", size: 16),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 150.0,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      //child:Image.asset("assets/images/dashboard_bg.png",fit: BoxFit.cover),
-                      child: Image.network(
-                          "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.network(
-                          "https://images.pexels.com/photos/895254/pexels-photo-895254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.network(
-                          "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.network(
-                          "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: Color(0xffF0EFEF),
-                    borderRadius: BorderRadius.circular(17)),
-                child: Padding(
-                  padding: EdgeInsets.all(12),
-                  child: Row(children: [
-                    Container(
-                      alignment: Alignment.center,
-                      margin: const EdgeInsets.all(10),
-                      height: 30,
-                      width: 70,
-                      decoration: BoxDecoration(
-                          color: primarycolors.blue,
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Text(
-                        'OFFER',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: const Color(0xFFE7E7E7),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            textviewstyle(text: "Depart", size: 16, textColor: primarycolors.txtcolor),
+                            clickableedittext(
+                                hintText: resultDate,
+                                Controller: departureController,
+                                iconName: Icons.calendar_month,
+                                onTap: () {
+                                  _navigateAndDisplayDate(context);
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context)=> calender()));
+                                }),
+                          ],
                         ),
                       ),
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Flat 18% off',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            textviewstyle(text: "Return", size: 16, textColor: primarycolors.txtcolor),
+                            clickableedittext(
+                                hintText: resultDate,
+                                Controller: departureController,
+                                iconName: Icons.calendar_month,
+                                onTap: () {
+                                  _navigateAndDisplayDate(context);
+                                  //Navigator.push(context, MaterialPageRoute(builder: (context)=> calender()));
+                                }),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(text: "Passenger", size: 16, textColor: primarycolors.txtcolor),
+                  clickableedittext(
+                      hintText: resultPassenger,
+                      Controller: travellerController,
+                      iconName: Icons.person,
+                      onTap: () {
+                        //_navigateAndDisplaySelection(context);
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return StatefulBuilder(builder: (BuildContext context, StateSetter setState){
+                              return Container(
+                                  width: double.infinity,
+                                  child: Padding(padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        textviewstyle(text: "Choose Travellers", size: 20, textColor: primarycolors.darkblue, fontweight: FontWeight.bold,),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            //  textviewstyle(text: "Adults", size: 16, textColor: Colors.black),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                textviewstyle(text: "Adult", size: 16, textColor: Colors.black, fontweight: FontWeight.bold,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove_circle, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                      },
+                                                    ),
+                                                    textviewstyle(text: '$itemCount1', size: 16, textColor: Colors.black),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add_circle_outlined, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                textviewstyle(text: "Children", size: 16, textColor: Colors.black,fontweight: FontWeight.bold),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove_circle, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                        decrementCount2();
+                                                      },
+                                                    ),
+                                                    textviewstyle(text: '$itemCount2', size: 16, textColor: Colors.black),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add_circle_outlined, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                        incrementCount2();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                textviewstyle(text: "Infants", size: 16, textColor: Colors.black,fontweight: FontWeight.bold),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove_circle, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                        decrementCount3();
+                                                      },
+                                                    ),
+                                                    textviewstyle(text: '$itemCount3', size: 16, textColor: Colors.black),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add_circle_outlined, color: primarycolors.darkblue,),
+                                                      onPressed: () {
+                                                        incrementCount3();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        btndecor(text: "Done", ontap: (){}, btncolor: primarycolors.darkblue, textcolor: Colors.white)
+                                        // _navigateAndDisplaySelection(context)
+                                      ],
+                                    ),)
+                              );
+                            });
+                          },
+                        );
+                      }),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(text: "Class", size: 16, textColor: primarycolors.txtcolor),
+                  clickableedittext(
+                      hintText: resultClass,
+                      Controller: travellerController,
+                      iconName: Icons.person,
+                      onTap: () {
+                        //_navigateAndDisplaySelection(context);
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: double.infinity,
+                              child: Padding(padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  textviewstyle(text: "Choose Traveller", size: 20, textColor: primarycolors.darkblue),
+                                  Column(
+                                    children: [
+                                      CheckboxListTile(
+                                        title: Text('Economy'),
+                                        value: _selectedValue == 1,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            if (value!) {
+                                              _selectedValue = 1;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      CheckboxListTile(
+                                        title: Text('Business'),
+                                        value: _selectedValue == 2,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            if (value!) {
+                                              _selectedValue = 2;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      CheckboxListTile(
+                                        title: Text('First class'),
+                                        value: _selectedValue == 3,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            if (value!) {
+                                              _selectedValue = 3;
+                                            }
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  btndecor(text: "Done", ontap: (){}, btncolor: primarycolors.darkblue, textcolor: Colors.white)
+                                 // _navigateAndDisplaySelection(context)
+                                ],
+                              ),)
+                            );
+                          },
+                        );
+                      }),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  btndecor(
+                      text: "Search Flights",
+                      ontap: () {},
+                      btncolor: primarycolors.darkblue,
+                      textcolor: Colors.white),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  textviewstyle(text: "Deals", size: 16, textColor: primarycolors.darkblue,),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 150.0,
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20), // Image border
+                          child: SizedBox.fromSize(
+                            // Image radius
+                            //child:Image.asset("assets/images/dashboard_bg.png",fit: BoxFit.cover),
+                            child: Image.network(
+                                "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
                           ),
-                          Text('Lorem Ipsum'),
-                        ])
-                  ]),
-                )),
-            SizedBox(
-              height: 10,
-            ),
-            textviewstyle(text: "Offers & Discounts", size: 16),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 150.0,
-              child: ListView(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      child: Image.network(
-                          "https://media.istockphoto.com/id/155439315/photo/passenger-airplane-flying-above-clouds-during-sunset.jpg?s=612x612&w=0&k=20&c=LJWadbs3B-jSGJBVy9s0f8gZMHi2NvWFXa3VJ2lFcL0="),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20), // Image border
+                          child: SizedBox.fromSize(
+                            // Image radius
+                            child: Image.network(
+                                "https://images.pexels.com/photos/895254/pexels-photo-895254.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20), // Image border
+                          child: SizedBox.fromSize(
+                            // Image radius
+                            child: Image.network(
+                                "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20), // Image border
+                          child: SizedBox.fromSize(
+                            // Image radius
+                            child: Image.network(
+                                "https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.network(
-                          "https://www.shutterstock.com/image-photo/passengers-commercial-airplane-flying-above-600nw-1573918030.jpg"),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.network(
-                          "https://media.istockphoto.com/id/155439315/photo/passenger-airplane-flying-above-clouds-during-sunset.jpg?s=612x612&w=0&k=20&c=LJWadbs3B-jSGJBVy9s0f8gZMHi2NvWFXa3VJ2lFcL0="),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                      // Image radius
-                      child: Image.asset("assets/images/dashboard_bg.png",
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
+
                 ],
               ),
             ),
-          ],
-        ),
-      ],
-    ));
+                  ],
+                ),
+          )),
+    );
   }
 }

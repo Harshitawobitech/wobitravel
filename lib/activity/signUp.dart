@@ -32,8 +32,8 @@ class _signUp extends State<signUp> {
                     child: Column(
                       children: [
                         Image.asset("assets/images/final_logo.png",width: 100, height: 50,fit: BoxFit.cover,),
-                        textviewstyle(text: "Sign up your Account", size: 22, fontweight: FontWeight.bold,),
-                        textviewstyle(text: "Lorum Ipsum", size: 16, ),
+                        textviewstyle(text: "Sign up your Account", size: 22, fontweight: FontWeight.bold, textColor: Colors.black,),
+                        textviewstyle(text: "Lorum Ipsum", size: 16, textColor: Colors.black, ),
                       ],
                     ),
                   ),
@@ -45,7 +45,7 @@ class _signUp extends State<signUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   textviewstyle(
-                    text: "Name", size: 12,
+                    text: "Name", size: 12, textColor: Colors.black,
                   ),
                   edittextstyle(
                       hintText: "Name", Controller: firstnameController, ),
@@ -54,7 +54,7 @@ class _signUp extends State<signUp> {
                   ),
 
                   textviewstyle(
-                    text: 'Email Address', size: 12,
+                    text: 'Email Address', size: 12, textColor: Colors.black,
                   ),
 
                   edittextstyle(
@@ -64,7 +64,7 @@ class _signUp extends State<signUp> {
                     height: 10,
                   ),
                   textviewstyle(
-                    text: 'Mobile', size: 12,
+                    text: 'Mobile', size: 12, textColor: Colors.black,
                   ),
 
                   edittextstyle(
@@ -74,7 +74,7 @@ class _signUp extends State<signUp> {
                     height: 10,
                   ),
                   textviewstyle(
-                    text: 'Country', size: 12,
+                    text: 'Country', size: 12, textColor: Colors.black,
                   ),
 
                   edittextstyle(
@@ -84,7 +84,7 @@ class _signUp extends State<signUp> {
                     height: 10,
                   ),
                   textviewstyle(
-                    text: 'City', size: 12,
+                    text: 'City', size: 12, textColor: Colors.black,
                   ),
                   edittextstyle(
                       hintText: "city", Controller: passwordController,),
@@ -111,8 +111,8 @@ class _signUp extends State<signUp> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      textviewstyle(text: 'Already have an Account ? ', size: 18,),
-                      textviewstyle(text: 'Sign in', size: 18,)
+                      textviewstyle(text: 'Already have an Account ? ', size: 18, textColor: Colors.black,),
+                      textviewstyle(text: 'Sign in', size: 18, textColor: Colors.black,)
                     ],
                   ))
             ]),

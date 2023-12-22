@@ -47,148 +47,152 @@ class _MyMotionTabBarDemo extends State<MyMotionTabBarDemo>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: primarycolors.blue,
-          elevation: 50.0,
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.share,
-                color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+
+        /*appBar: AppBar(
+            iconTheme: IconThemeData(color: Colors.white),
+            backgroundColor: primarycolors.blue,
+            elevation: 50.0,
+            actions: <Widget>[
+              IconButton(
+                icon: const Icon(
+                  Icons.share,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
               ),
-              onPressed: () {},
+            ]),*/
+        drawer: Drawer(
+          child:
+          Container(
+            color: Colors.white,
+            child: ListView(
+              padding: const EdgeInsets.all(0),
+              children: [
+                ListTile(
+                  title: const Text(
+                    'Home',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.dashboard),
+                  title: const Text('Overview'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.shopping_cart),
+                  title: const Text('Pricing'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ExpansionTile(
+                  title: Text("Privacy Policy"),
+                  iconColor: Colors.black,
+                  collapsedIconColor: Colors.black,
+                  childrenPadding: EdgeInsets.only(left: 60),
+                  leading: Icon(Icons.privacy_tip),
+                  children: [
+                    ListTile(
+                      title: Text("Policy 1"),
+                      onTap: () {},
+                    ),
+                    ListTile(
+                      title: Text("Policy 2"),
+                      onTap: () {},
+                    ),
+                  ],
+                ),
+                ListTile(
+                  title: const Text(
+                    'Overview',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.insert_comment_sharp),
+                  title: const Text('Comments'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.speaker_notes),
+                  title: const Text('Released'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.calendar_month),
+                  title: const Text('Scheduled'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.hotel),
+                  title: const Text('Hotel'),
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
-          ]),
-      drawer: Drawer(
-        child:
-        Container(
-          color: Colors.white,
-          child: ListView(
-            padding: const EdgeInsets.all(0),
-            children: [
-              ListTile(
-                title: const Text(
-                  'Home',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.dashboard),
-                title: const Text('Overview'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.shopping_cart),
-                title: const Text('Pricing'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ExpansionTile(
-                title: Text("Privacy Policy"),
-                iconColor: Colors.black,
-                collapsedIconColor: Colors.black,
-                childrenPadding: EdgeInsets.only(left: 60),
-                leading: Icon(Icons.privacy_tip),
-                children: [
-                  ListTile(
-                    title: Text("Policy 1"),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    title: Text("Policy 2"),
-                    onTap: () {},
-                  ),
-                ],
-              ),
-              ListTile(
-                title: const Text(
-                  'Overview',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.insert_comment_sharp),
-                title: const Text('Comments'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.speaker_notes),
-                title: const Text('Released'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.calendar_month),
-                title: const Text('Scheduled'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.hotel),
-                title: const Text('Hotel'),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ],
           ),
         ),
-      ),
-      bottomNavigationBar: MotionTabBar(
-        controller: _motionTabBarController,
-        initialSelectedTab: "Home",
-        useSafeArea: true,
-        labels: const ["Home", "Ticket", "Notification", "Profile"],
-        icons: const [
-          Icons.home_outlined,
-          Icons.airplane_ticket_outlined,
-          Icons.notifications_none_outlined,
-          Icons.person_2_outlined
-        ],
-        textStyle: const TextStyle(
-          fontSize: 14,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+        bottomNavigationBar: MotionTabBar(
+          controller: _motionTabBarController,
+          initialSelectedTab: "Home",
+          useSafeArea: true,
+          labels: const ["Home", "Ticket", "Notification", "Profile"],
+          icons: const [
+            Icons.home_outlined,
+            Icons.airplane_ticket_outlined,
+            Icons.notifications_none_outlined,
+            Icons.person_2_outlined
+          ],
+          textStyle: TextStyle(
+            fontSize: 14,
+            color: primarycolors.darkblue,
+            fontWeight: FontWeight.bold,
+          ),
+          tabIconColor: Color(0xFFAFAFAF),
+          tabIconSize: 28.0,
+          tabIconSelectedSize: 26.0,
+          tabSelectedColor: Colors.white,
+          tabIconSelectedColor: primarycolors.darkblue,
+          tabBarColor: Colors.white,
+          onTabItemSelected: (int value) {
+            setState(() {
+              _motionTabBarController!.index = value;
+            });
+          },
         ),
-        tabIconColor: Color(0xFFAFAFAF),
-        tabIconSize: 28.0,
-        tabIconSelectedSize: 26.0,
-        tabSelectedColor: primarycolors.blue,
-        tabIconSelectedColor: Colors.white,
-        tabBarColor: primarycolors.blue,
-        onTabItemSelected: (int value) {
-          setState(() {
-            _motionTabBarController!.index = value;
-          });
-        },
+        body: TabBarView(
+          physics:
+              const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
+          controller: _motionTabBarController,
+          children: <Widget>[
+            flightNavigation(),
+            Text("Ticket"),
+            Text("notification"),
+            Text("Profile")
+          ],
+        ),
+
+        //Drawer
       ),
-      body: TabBarView(
-        physics:
-            const NeverScrollableScrollPhysics(), // swipe navigation handling is not supported
-        controller: _motionTabBarController,
-        children: <Widget>[
-          flightNavigation(),
-          Text("Ticket"),
-          Text("notification"),
-          Text("Profile")
-        ],
-      ),
-      //Drawer
     );
   }
 }

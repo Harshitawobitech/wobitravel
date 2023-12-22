@@ -17,24 +17,16 @@ class clickableedittext extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 4,
-      child: TextField(
+    return TextField(
         onTap: onTap,
         readOnly: true,
           controller: Controller,
           decoration: InputDecoration(
-              icon: new Icon(iconName),
+              prefixIcon: IconButton(onPressed: (){}, icon: Icon(iconName)),
               hintText: hintText,
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none
-              )
           )
 
-      ),
+
     );
   }
 }

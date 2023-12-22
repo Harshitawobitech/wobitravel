@@ -37,7 +37,7 @@ class _otpverificationState extends State<otpverification> {
               const SizedBox(
                 height: 20,
               ),
-              textviewstyle(text: 'Enter the OTP received on registered phone number 9876543212', size: 16,),
+             // textviewstyle(text: 'Enter the OTP received on registered phone number 9876543212', size: 16,),
               const SizedBox(
                 height: 30,
               ),

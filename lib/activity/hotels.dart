@@ -55,7 +55,7 @@ class _hotelsState extends State<hotels> {
               SizedBox(
                 height: 10,
               ),
-              textviewstyle(text: "Other Services", size: 16),
+              //textviewstyle(text: "Other Services", size: 16),
               SizedBox(
                 height: 10,
               ),
@@ -119,7 +119,7 @@ class _hotelsState extends State<hotels> {
               SizedBox(
                 height: 10,
               ),
-              textviewstyle(text: "Explore", size: 16),
+              //textviewstyle(text: "Explore", size: 16),
               SizedBox(
                 height: 10,
               ),
@@ -213,7 +213,7 @@ class _hotelsState extends State<hotels> {
               SizedBox(
                 height: 10,
               ),
-              textviewstyle(text: "Offers & Discounts", size: 16),
+              //textviewstyle(text: "Offers & Discounts", size: 16),
               SizedBox(
                 height: 10,
               ),

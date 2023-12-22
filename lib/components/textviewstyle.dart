@@ -5,11 +5,13 @@ class textviewstyle extends StatelessWidget {
   String text;
   double size;
   FontWeight? fontweight;
+  Color textColor;
 
   textviewstyle({
     required this.text,
     required this.size,
-    this.fontweight
+    this.fontweight,
+    required this.textColor,
 });
 
   @override
@@ -18,7 +20,7 @@ class textviewstyle extends StatelessWidget {
       text,
       style: TextStyle(
        // color: Color(0xff32A2FE),
-        color: Colors.black,
+        color: textColor,
         fontSize: size,
         fontWeight: fontweight,
       ),

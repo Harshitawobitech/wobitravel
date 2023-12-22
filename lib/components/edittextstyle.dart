@@ -12,22 +12,37 @@ class edittextstyle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 4,
-      child: TextField(
+    return TextField(
           controller: Controller,
           decoration: InputDecoration(
               hintText: hintText,
-              filled: true,
-              fillColor: Colors.white,
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide.none
-              )
+
           )
 
-      ),
+
     );
   }
 }
+
+
+/*@override
+Widget build(BuildContext context) {
+  return Material(
+    elevation: 4,
+    child: TextField(
+        controller: Controller,
+        decoration: InputDecoration(
+            hintText: hintText,
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide.none
+            )
+        )
+
+    ),
+  );
+}
+}*/
 
